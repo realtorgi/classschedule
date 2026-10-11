@@ -4,66 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>수업 진도 및 AI 학습 관리 매니저</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Noto Sans KR', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#2563eb',
-                            600: '#1d4ed8',
-                            700: '#1e40af',
-                            900: '#1e3a8a',
-                        },
-                        ai: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f8fafc;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-        @media print {
-            .no-print { display: none !important; }
-            .print-only { display: block !important; }
-            .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; }
-        }
+        body { font-family: sans-serif; background-color: #f8fafc; }
+        @media print { .no-print { display: none !important; } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
@@ -72,38 +16,24 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center space-x-3">
-                    <div class="bg-brand-600 p-2 rounded-lg text-white">
-                        <i class="fa-solid fa-book-bookmark text-xl"></i>
-                    </div>
+                    <div class="bg-blue-600 p-2 rounded-lg text-white font-bold">📖</div>
                     <div>
                         <h1 class="font-bold text-lg leading-tight flex items-center">
                             수업 진도 관리 매니저 
-                            <span class="ml-2 text-xs bg-ai-600 text-white font-semibold px-2 py-0.5 rounded-full flex items-center">
-                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Gemini AI
-                            </span>
+                            <span class="ml-2 text-xs bg-purple-600 text-white font-semibold px-2 py-0.5 rounded-full">✨ Gemini AI</span>
                         </h1>
-                        <p class="text-xs text-slate-400">학원 및 개인교습 진도표 & AI 학습 도우미</p>
+                        <p class="text-xs text-slate-400">학원 및 개인교습 진도표</p>
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-2 sm:space-x-3">
-                    <button onclick="openAiModal()" class="bg-gradient-to-r from-ai-600 to-indigo-600 hover:from-ai-500 hover:to-indigo-500 text-white text-xs sm:text-sm px-3.5 py-2 rounded-lg font-medium transition flex items-center shadow-md cursor-pointer">
-                        <i class="fa-solid fa-sparkles mr-1.5"></i> AI 학습비서 / 알림톡
-                    </button>
-                    <button onclick="openLogModal()" class="bg-brand-600 hover:bg-brand-500 text-white text-xs sm:text-sm px-3 py-2 rounded-lg font-medium transition flex items-center shadow-sm cursor-pointer">
-                        <i class="fa-solid fa-plus mr-1.5"></i> 진도 기입하기
-                    </button>
-                    <button onclick="openClassModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm px-3 py-2 rounded-lg font-medium border border-slate-700 transition flex items-center cursor-pointer">
-                        <i class="fa-solid fa-users-gear mr-1.5"></i> 반/과목 관리
-                    </button>
-                    <button onclick="exportData()" title="데이터 백업 (다운로드)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-2 rounded-lg border border-slate-700 transition text-sm flex items-center gap-1 cursor-pointer">
-                        <i class="fa-solid fa-download"></i>
-                        <span class="hidden sm:inline text-xs">백업</span>
-                    </button>
-                    <label title="데이터 불러오기 (JSON)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-2 rounded-lg border border-slate-700 transition text-sm cursor-pointer flex items-center gap-1">
-                        <i class="fa-solid fa-upload"></i>
-                        <span class="hidden sm:inline text-xs">불러오기</span>
-                        <input type="file" id="import-file-input" accept=".json" onchange="importData(event)" class="hidden">
+                <div class="flex items-center space-x-2">
+                    <button onclick="openAiModal()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs sm:text-sm px-3 py-2 rounded-lg font-medium cursor-pointer">✨ AI 알림톡</button>
+                    <button onclick="openLogModal()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm px-3 py-2 rounded-lg font-medium cursor-pointer">+ 진도 기입</button>
+                    <button onclick="openClassModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm px-3 py-2 rounded-lg font-medium border border-slate-700 cursor-pointer">⚙️ 반/과목 관리</button>
+                    <button onclick="exportData()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-lg border border-slate-700 text-xs cursor-pointer">💾 백업</button>
+                    <label class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-lg border border-slate-700 text-xs cursor-pointer">
+                        📂 불러오기
+                        <input type="file" accept=".json" onchange="importData(event)" class="hidden">
                     </label>
                 </div>
             </div>
@@ -112,456 +42,218 @@
 
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 no-print">
-            <div class="flex bg-slate-100 p-1 rounded-lg border border-slate-200 self-start sm:self-auto">
-                <button id="tab-matrix" onclick="switchView('matrix')" class="px-4 py-1.5 text-sm font-semibold rounded-md transition text-brand-600 bg-white shadow-sm flex items-center cursor-pointer">
-                    <i class="fa-solid fa-table-cells mr-2"></i> 진도표 (매트릭스)
-                </button>
-                <button id="tab-history" onclick="switchView('history')" class="px-4 py-1.5 text-sm font-medium rounded-md transition text-slate-600 hover:text-slate-900 flex items-center cursor-pointer">
-                    <i class="fa-solid fa-clock-rotate-left mr-2"></i> 전체 기록 목록
-                </button>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex justify-between items-center no-print">
+            <div class="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button id="tab-matrix" onclick="switchView('matrix')" class="px-4 py-1.5 text-sm font-semibold rounded-md text-blue-600 bg-white shadow-sm cursor-pointer">📊 진도표 (매트릭스)</button>
+                <button id="tab-history" onclick="switchView('history')" class="px-4 py-1.5 text-sm font-medium rounded-md text-slate-600 cursor-pointer">📜 전체 기록 목록</button>
             </div>
 
-            <div class="flex items-center gap-2 flex-1 max-w-md">
-                <div class="relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="검색 (학생 이름, 교재, 과제 내용 등)..." 
-                           class="w-full pl-9 pr-4 py-1.5 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition">
-                </div>
-                <button onclick="window.print()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm px-3 py-1.5 rounded-lg border border-slate-300 font-medium transition flex items-center whitespace-nowrap cursor-pointer">
-                    <i class="fa-solid fa-print mr-1.5"></i> 인쇄
-                </button>
+            <div class="flex items-center gap-2 max-w-md">
+                <input type="text" id="search-input" oninput="handleSearch()" placeholder="검색어 입력..." class="w-full px-3 py-1.5 text-sm bg-slate-50 border border-slate-300 rounded-lg outline-none">
+                <button onclick="window.print()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm px-3 py-1.5 rounded-lg border border-slate-300 cursor-pointer">🖨️ 인쇄</button>
             </div>
         </div>
 
         <div id="view-matrix" class="space-y-4">
-            <div class="flex items-center justify-between px-1">
-                <h2 class="text-base font-bold text-slate-800 flex items-center">
-                    <span class="w-2.5 h-2.5 rounded-full bg-brand-600 mr-2"></span>
-                    반별 과목 진도 현황표
-                </h2>
-                <div class="text-xs text-slate-500">
-                    상태: <span id="last-update-time" class="font-semibold text-brand-600">정상 작동 중</span>
-                </div>
-            </div>
-
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
                 <table class="w-full border-collapse text-left text-sm" id="matrix-table">
                     <thead>
                         <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold text-center">
-                            <th class="p-3.5 border-r border-slate-200 w-48 min-w-[170px] bg-slate-200/80">반 / 학생 명단</th>
+                            <th class="p-3.5 border-r border-slate-200 w-48 bg-slate-200">반 / 학생 명단</th>
                         </tr>
                     </thead>
-                    <tbody id="matrix-body" class="divide-y divide-slate-200">
-                    </tbody>
+                    <tbody id="matrix-body" class="divide-y divide-slate-200"></tbody>
                 </table>
             </div>
         </div>
 
         <div id="view-history" class="hidden space-y-4">
-            <div class="flex items-center justify-between px-1">
-                <h2 class="text-base font-bold text-slate-800 flex items-center">
-                    <span class="w-2.5 h-2.5 rounded-full bg-slate-600 mr-2"></span>
-                    전체 진도 기록 타임라인
-                </h2>
-                <div class="flex gap-2">
-                    <select id="filter-class" onchange="renderHistoryView()" class="text-xs bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 outline-none">
-                        <option value="">전체 반 보기</option>
-                    </select>
-                    <select id="filter-subject" onchange="renderHistoryView()" class="text-xs bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 outline-none">
-                        <option value="">전체 과목 보기</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 divide-y divide-slate-100" id="history-container">
-            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 divide-y divide-slate-100" id="history-container"></div>
         </div>
 
     </main>
 
-    <!-- Modals -->
-    <div id="modal-ai" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col max-h-[90vh]">
-            <div class="bg-gradient-to-r from-slate-900 via-ai-900 to-indigo-900 text-white px-6 py-4 flex justify-between items-center shrink-0">
-                <div class="flex items-center space-x-2">
-                    <span class="p-1.5 bg-ai-500/30 rounded-lg border border-ai-400/40 text-ai-300">
-                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
-                    </span>
-                    <div>
-                        <h3 class="font-bold text-base">Gemini AI 학습 매니저</h3>
-                        <p class="text-[11px] text-indigo-200">학부모 리포트 작성 & 맞춤 과제 설계 & AI 원어민 음성</p>
-                    </div>
-                </div>
-                <button onclick="closeAiModal()" class="text-slate-400 hover:text-white text-lg transition cursor-pointer">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+    <!-- 모달 창들 -->
+    <div id="modal-ai" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 space-y-4">
+            <h3 class="font-bold text-lg">✨ AI 학부모 알림톡 생성</h3>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">대상 반 선택</label>
+                <select id="ai-parent-class" class="w-full text-sm p-2 bg-slate-50 border rounded-lg"></select>
             </div>
-
-            <div class="bg-slate-100 px-6 border-b border-slate-200 flex space-x-4 text-xs font-semibold shrink-0">
-                <button id="ai-tab-parent" onclick="switchAiTab('parent')" class="py-3 border-b-2 border-ai-600 text-ai-700 flex items-center cursor-pointer">
-                    <i class="fa-solid fa-comment-dots mr-1.5"></i> 학부모 알림톡 생성
-                </button>
-                <button id="ai-tab-clinic" onclick="switchAiTab('clinic')" class="py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center cursor-pointer">
-                    <i class="fa-solid fa-brain mr-1.5"></i> 맞춤 과제 & 클리닉 추천
-                </button>
-                <button id="ai-tab-tts" onclick="switchAiTab('tts')" class="py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center cursor-pointer">
-                    <i class="fa-solid fa-volume-high mr-1.5"></i> AI 원어민 음성 (TTS)
-                </button>
-            </div>
-
-            <div class="p-6 overflow-y-auto space-y-4 flex-1">
-                <div id="ai-sec-parent" class="space-y-3">
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">대상 반 선택</label>
-                            <select id="ai-parent-class" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none"></select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">말투 / 어조</label>
-                            <select id="ai-parent-tone" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none">
-                                <option value="정중하고 따뜻하게">정중하고 따뜻하게 (기본)</option>
-                                <option value="간결하고 명확하게">간결하고 요점 중심</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button onclick="generateParentMessage()" class="w-full py-2.5 bg-ai-600 hover:bg-ai-700 text-white font-semibold text-xs rounded-xl shadow transition flex items-center justify-center cursor-pointer">
-                        <i class="fa-solid fa-sparkles mr-2"></i> 학부모 알림톡 자동 생성하기
-                    </button>
-                    <div id="ai-parent-result-box" class="hidden space-y-2 pt-2">
-                        <textarea id="ai-parent-result" rows="7" class="w-full text-xs p-3 bg-slate-50 border border-slate-300 rounded-xl outline-none"></textarea>
-                    </div>
-                </div>
-
-                <div id="ai-sec-clinic" class="hidden space-y-3">
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">대상 반</label>
-                            <select id="ai-clinic-class" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none"></select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">과목</label>
-                            <select id="ai-clinic-subject" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none"></select>
-                        </div>
-                    </div>
-                    <button onclick="generateClinicPlan()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs rounded-xl shadow transition flex items-center justify-center cursor-pointer">
-                        <i class="fa-solid fa-brain mr-2"></i> 맞춤 과제 및 클리닉 제안받기
-                    </button>
-                    <div id="ai-clinic-result-box" class="hidden space-y-2 pt-2">
-                        <div id="ai-clinic-result" class="p-3.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-800 space-y-2"></div>
-                    </div>
-                </div>
-
-                <div id="ai-sec-tts" class="hidden space-y-3">
-                    <textarea id="ai-tts-input" rows="3" placeholder="영문 문장 입력..." class="w-full text-xs p-3 bg-slate-50 border border-slate-300 rounded-lg outline-none"></textarea>
-                    <button onclick="generateTtsAudio()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl shadow transition cursor-pointer">
-                        <i class="fa-solid fa-play mr-2"></i> 음성 재생
-                    </button>
-                    <div id="ai-tts-player-container" class="hidden pt-2">
-                        <div class="p-3 bg-slate-900 rounded-xl text-white flex items-center justify-between">
-                            <span class="text-xs" id="tts-status-text">재생 중...</span>
-                            <button onclick="stopTtsAudio()" class="text-xs bg-slate-800 px-2.5 py-1 rounded">정지</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex justify-end">
-                <button onclick="closeAiModal()" class="px-4 py-2 bg-slate-800 text-white text-xs font-semibold rounded-lg cursor-pointer">닫기</button>
-            </div>
+            <button onclick="generateParentMessage()" class="w-full py-2 bg-purple-600 text-white rounded-lg font-bold">알림톡 문구 생성</button>
+            <textarea id="ai-parent-result" rows="6" class="w-full text-xs p-3 bg-slate-50 border rounded-lg outline-none"></textarea>
+            <button onclick="closeAiModal()" class="w-full py-2 bg-slate-800 text-white rounded-lg text-xs font-bold">닫기</button>
         </div>
     </div>
 
-    <div id="modal-log" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full overflow-hidden">
-            <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
-                <h3 class="font-bold text-base" id="log-modal-title">수업 진도 기록</h3>
-                <button onclick="closeLogModal()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form id="log-form" onsubmit="handleSaveLog(event)" class="p-6 space-y-4">
-                <input type="hidden" id="log-id" value="">
-                <div class="grid grid-cols-2 gap-4">
+    <div id="modal-log" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-6">
+            <h3 class="font-bold text-lg mb-4" id="log-modal-title">📝 수업 진도 기록</h3>
+            <form onsubmit="handleSaveLog(event)" class="space-y-3">
+                <input type="hidden" id="log-id">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">날짜</label>
-                        <input type="date" id="log-date" required class="w-full text-sm p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none">
+                        <input type="date" id="log-date" required class="w-full text-sm p-2 bg-slate-50 border rounded-lg">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">대상 반</label>
-                        <select id="log-class" required class="w-full text-sm p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none"></select>
+                        <select id="log-class" required class="w-full text-sm p-2 bg-slate-50 border rounded-lg"></select>
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">과목</label>
-                    <select id="log-subject" required class="w-full text-sm p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none"></select>
+                    <select id="log-subject" required class="w-full text-sm p-2 bg-slate-50 border rounded-lg"></select>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">진도 / 범위</label>
-                    <input type="text" id="log-progress" required placeholder="예: 3/2026(고2) #6" class="w-full text-sm p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">진도 내용</label>
+                    <input type="text" id="log-progress" required placeholder="예: 3/2026(고2) #6" class="w-full text-sm p-2 bg-slate-50 border rounded-lg">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">숙제 메모</label>
-                    <textarea id="log-homework" rows="2" class="w-full text-sm p-2.5 bg-slate-50 border border-slate-300 rounded-lg outline-none resize-none"></textarea>
+                    <textarea id="log-homework" rows="2" class="w-full text-sm p-2 bg-slate-50 border rounded-lg"></textarea>
                 </div>
-                <div class="flex justify-between items-center pt-2 border-t mt-4">
-                    <button type="button" id="btn-delete-log" onclick="deleteCurrentLog()" class="text-xs text-red-600 hidden font-medium cursor-pointer">삭제</button>
+                <div class="flex justify-between pt-3">
+                    <button type="button" id="btn-delete-log" onclick="deleteCurrentLog()" class="text-xs text-red-600 hidden font-bold">삭제</button>
                     <div class="flex gap-2 ml-auto">
-                        <button type="button" onclick="closeLogModal()" class="px-4 py-2 text-xs text-slate-600 cursor-pointer">취소</button>
-                        <button type="submit" class="px-5 py-2 text-xs bg-brand-600 text-white rounded-lg font-semibold cursor-pointer">저장</button>
+                        <button type="button" onclick="closeLogModal()" class="px-3 py-1.5 text-xs text-slate-600">취소</button>
+                        <button type="submit" class="px-4 py-1.5 text-xs bg-blue-600 text-white rounded-lg font-bold">저장</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="modal-class" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl shadow-xl max-w-xl w-full overflow-hidden">
-            <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
-                <h3 class="font-bold text-base">반 및 과목 설정</h3>
-                <button onclick="closeClassModal()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
-                <div>
-                    <h4 class="text-xs font-bold text-slate-500 mb-2">반 추가</h4>
-                    <div class="flex gap-2 mb-2">
-                        <input type="text" id="new-class-input" placeholder="반 이름" class="flex-1 text-sm p-2 bg-slate-50 border border-slate-300 rounded-lg outline-none">
-                        <button onclick="addClass()" class="px-3 py-2 bg-slate-800 text-white text-xs rounded-lg cursor-pointer">추가</button>
-                    </div>
-                    <ul id="class-list" class="space-y-1 bg-slate-50 p-2 rounded-lg border"></ul>
+    <div id="modal-class" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 space-y-4">
+            <h3 class="font-bold text-lg">⚙️ 반 및 과목 설정</h3>
+            <div>
+                <h4 class="text-xs font-bold text-slate-500 mb-1">반 목록</h4>
+                <div class="flex gap-2 mb-2">
+                    <input type="text" id="new-class-input" placeholder="반 이름" class="flex-1 text-sm p-2 bg-slate-50 border rounded-lg">
+                    <button onclick="addClass()" class="px-3 py-2 bg-slate-800 text-white text-xs rounded-lg font-bold">추가</button>
                 </div>
-                <div>
-                    <h4 class="text-xs font-bold text-slate-500 mb-2">과목 추가</h4>
-                    <div class="flex gap-2 mb-2">
-                        <input type="text" id="new-subject-input" placeholder="과목 이름" class="flex-1 text-sm p-2 bg-slate-50 border border-slate-300 rounded-lg outline-none">
-                        <button onclick="addSubject()" class="px-3 py-2 bg-slate-800 text-white text-xs rounded-lg cursor-pointer">추가</button>
-                    </div>
-                    <ul id="subject-list" class="space-y-1 bg-slate-50 p-2 rounded-lg border"></ul>
+                <ul id="class-list" class="space-y-1 bg-slate-50 p-2 rounded-lg border text-xs"></ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-slate-500 mb-1">과목 목록</h4>
+                <div class="flex gap-2 mb-2">
+                    <input type="text" id="new-subject-input" placeholder="과목 이름" class="flex-1 text-sm p-2 bg-slate-50 border rounded-lg">
+                    <button onclick="addSubject()" class="px-3 py-2 bg-slate-800 text-white text-xs rounded-lg font-bold">추가</button>
                 </div>
+                <ul id="subject-list" class="space-y-1 bg-slate-50 p-2 rounded-lg border text-xs"></ul>
             </div>
-            <div class="bg-slate-50 px-6 py-3 border-t flex justify-end">
-                <button onclick="closeClassModal()" class="px-4 py-2 text-xs bg-slate-800 text-white rounded-lg cursor-pointer">닫기</button>
-            </div>
+            <button onclick="closeClassModal()" class="w-full py-2 bg-slate-800 text-white rounded-lg text-xs font-bold">닫기</button>
         </div>
     </div>
 
-    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-lg text-sm flex items-center space-x-3 transition-all duration-300 transform translate-y-20 opacity-0 z-50">
-        <i class="fa-solid fa-circle-check text-green-400" id="toast-icon"></i>
-        <span id="toast-message">저장되었습니다.</span>
-    </div>
-
     <script>
-        const DEFAULT_CLASSES = ['고1 (소연)', '고1 (우석, 수현, 태욱)', '고2 (규민, 동현)', '고3 (휘준, 영아, 리후)'];
-        const DEFAULT_SUBJECTS = ['Grammar', 'Listening', 'Reading'];
-        const DEFAULT_LOGS = [
-            { id: 'log_soyeon_1', date: '2026-09-28', className: '고1 (소연)', subject: 'Listening', progress: '3/2026(고2) #6', homework: '' },
-            { id: 'log_wooseok_grammar', date: '2026-09-28', className: '고1 (우석, 수현, 태욱)', subject: 'Grammar', progress: '3/2026(고2) #29', homework: '' },
-            { id: 'log_wooseok_listening', date: '2026-09-28', className: '고1 (우석, 수현, 태욱)', subject: 'Listening', progress: '6/2026(고2) #6, 4/2020(고3) #14', homework: '' },
-            { id: 'log_kyumin_grammar', date: '2026-09-28', className: '고2 (규민, 동현)', subject: 'Grammar', progress: '4/2026(고3) #29', homework: '' },
-            { id: 'log_kyumin_listening', date: '2026-09-28', className: '고2 (규민, 동현)', subject: 'Listening', progress: '11/2021(고3) #1', homework: '' },
-            { id: 'log_kyumin_reading', date: '2026-09-28', className: '고2 (규민, 동현)', subject: 'Reading', progress: '11/2023(고2) #24', homework: '' }
+        var DEFAULT_CLASSES = ['고1 (소연)', '고1 (우석, 수현, 태욱)', '고2 (규민, 동현)', '고3 (휘준, 영아, 리후)'];
+        var DEFAULT_SUBJECTS = ['Grammar', 'Listening', 'Reading'];
+        var DEFAULT_LOGS = [
+            { id: 'log1', date: '2026-09-28', className: '고1 (소연)', subject: 'Listening', progress: '3/2026(고2) #6', homework: '' },
+            { id: 'log2', date: '2026-09-28', className: '고1 (우석, 수현, 태욱)', subject: 'Grammar', progress: '3/2026(고2) #29', homework: '' },
+            { id: 'log3', date: '2026-09-28', className: '고2 (규민, 동현)', subject: 'Reading', progress: '11/2023(고2) #24', homework: '' }
         ];
 
-        let appClasses = DEFAULT_CLASSES;
-        let appSubjects = DEFAULT_SUBJECTS;
-        let appLogs = DEFAULT_LOGS;
-        let currentView = 'matrix';
-        let searchQuery = '';
+        var appClasses = DEFAULT_CLASSES;
+        var appSubjects = DEFAULT_SUBJECTS;
+        var appLogs = DEFAULT_LOGS;
+        var currentView = 'matrix';
+        var searchQuery = '';
 
-        // 안전한 데이터 로드 및 초기화
-        try {
-            const savedC = localStorage.getItem('app_classes_v9');
-            const savedS = localStorage.getItem('app_subjects_v9');
-            const savedL = localStorage.getItem('app_logs_v9');
-
-            if (savedC) appClasses = JSON.parse(savedC);
-            if (savedS) appSubjects = JSON.parse(savedS);
-            if (savedL) appLogs = JSON.parse(savedL);
-        } catch (e) {
-            console.error("저장소 데이터 초기화 필요", e);
-        }
-
-        window.onload = function() {
+        function initApp() {
             try {
-                const dateInput = document.getElementById('log-date');
-                if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
-                
-                renderMatrixView();
-                renderHistoryView();
-                populateModalSelects();
-            } catch (err) {
-                console.error("초기 실행 중 오류 발생:", err);
-            }
-        };
+                var c = localStorage.getItem('app_c_v10');
+                var s = localStorage.getItem('app_s_v10');
+                var l = localStorage.getItem('app_l_v10');
+                if (c) appClasses = JSON.parse(c);
+                if (s) appSubjects = JSON.parse(s);
+                if (l) appLogs = JSON.parse(l);
+            } catch(e) {}
+
+            var dateInput = document.getElementById('log-date');
+            if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
+
+            renderMatrixView();
+            renderHistoryView();
+            populateModalSelects();
+        }
 
         function saveData() {
             try {
-                localStorage.setItem('app_classes_v9', JSON.stringify(appClasses));
-                localStorage.setItem('app_subjects_v9', JSON.stringify(appSubjects));
-                localStorage.setItem('app_logs_v9', JSON.stringify(appLogs));
-            } catch(e) {
-                console.warn(e);
-            }
+                localStorage.setItem('app_c_v10', JSON.stringify(appClasses));
+                localStorage.setItem('app_s_v10', JSON.stringify(appSubjects));
+                localStorage.setItem('app_l_v10', JSON.stringify(appLogs));
+            } catch(e) {}
         }
 
         function switchView(viewName) {
             currentView = viewName;
-            const matrixView = document.getElementById('view-matrix');
-            const historyView = document.getElementById('view-history');
-            const tabMatrix = document.getElementById('tab-matrix');
-            const tabHistory = document.getElementById('tab-history');
-
-            if (viewName === 'matrix') {
-                matrixView.classList.remove('hidden');
-                historyView.classList.add('hidden');
-                tabMatrix.className = 'px-4 py-1.5 text-sm font-semibold rounded-md transition text-brand-600 bg-white shadow-sm flex items-center cursor-pointer';
-                tabHistory.className = 'px-4 py-1.5 text-sm font-medium rounded-md transition text-slate-600 hover:text-slate-900 flex items-center cursor-pointer';
-                renderMatrixView();
-            } else {
-                matrixView.classList.add('hidden');
-                historyView.classList.remove('hidden');
-                tabMatrix.className = 'px-4 py-1.5 text-sm font-medium rounded-md transition text-slate-600 hover:text-slate-900 flex items-center cursor-pointer';
-                tabHistory.className = 'px-4 py-1.5 text-sm font-semibold rounded-md transition text-brand-600 bg-white shadow-sm flex items-center cursor-pointer';
-                renderHistoryView();
-            }
+            document.getElementById('view-matrix').classList.toggle('hidden', viewName !== 'matrix');
+            document.getElementById('view-history').classList.toggle('hidden', viewName !== 'history');
+            if (viewName === 'matrix') renderMatrixView();
+            else renderHistoryView();
         }
 
         function renderMatrixView() {
-            const tableHeadRow = document.querySelector('#matrix-table thead tr');
-            const tbody = document.getElementById('matrix-body');
-            if (!tableHeadRow || !tbody) return;
+            var thead = document.querySelector('#matrix-table thead tr');
+            var tbody = document.getElementById('matrix-body');
+            if (!thead || !tbody) return;
 
-            tableHeadRow.innerHTML = `<th class="p-3.5 border-r border-slate-200 w-48 min-w-[170px] bg-slate-200/80 text-center font-bold">반 / 학생 명단</th>`;
-            appSubjects.forEach(subject => {
-                const th = document.createElement('th');
-                th.className = 'p-3.5 border-r border-slate-200 min-w-[210px] text-center font-bold text-slate-800 bg-slate-100';
-                th.innerText = subject;
-                tableHeadRow.appendChild(th);
+            thead.innerHTML = '<th class="p-3 border-r bg-slate-200">반 / 학생 명단</th>';
+            appSubjects.forEach(function(sub) {
+                thead.innerHTML += '<th class="p-3 border-r bg-slate-100 text-center">' + sub + '</th>';
             });
 
             tbody.innerHTML = '';
-            appClasses.forEach((className, classIdx) => {
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-slate-50 transition';
+            appClasses.forEach(function(cls, cIdx) {
+                var tr = document.createElement('tr');
+                var tdClass = '<td class="p-3 border-r border-b bg-slate-50 text-center font-bold">' +
+                    '<div>' + cls + '</div>' +
+                    '<button onclick="openLogModalForClass(' + cIdx + ')" class="mt-1 text-xs text-blue-600 border px-2 py-0.5 rounded">+ 진도</button>' +
+                    '</td>';
+                tr.innerHTML = tdClass;
 
-                const tdClass = document.createElement('td');
-                tdClass.className = 'p-3 border-r border-b border-slate-200 bg-slate-50 font-bold text-slate-800 align-top text-center';
-                tdClass.innerHTML = `
-                    <div class="space-y-1">
-                        <div class="text-sm font-bold text-slate-900">${escapeHtml(className)}</div>
-                        <div class="flex flex-col gap-1 pt-1">
-                            <button onclick="openLogModalForClassByIndex(${classIdx})" class="text-[11px] text-brand-600 hover:bg-brand-50 px-2 py-1 rounded border border-brand-200 cursor-pointer">
-                                <i class="fa-solid fa-plus mr-1"></i> 진도 추가
-                            </button>
-                            <button onclick="openAiModalForClassByIndex(${classIdx})" class="text-[11px] text-ai-700 bg-ai-50 hover:bg-ai-100 px-2 py-1 rounded border border-ai-200 font-semibold cursor-pointer">
-                                <i class="fa-solid fa-sparkles mr-1 text-ai-500"></i> AI 알림톡
-                            </button>
-                        </div>
-                    </div>
-                `;
-                tr.appendChild(tdClass);
-
-                appSubjects.forEach(subject => {
-                    const tdSubject = document.createElement('td');
-                    tdSubject.className = 'p-3 border-r border-b border-slate-200 align-top hover:bg-blue-50/30 transition min-h-[100px]';
-
-                    const filteredLogs = appLogs
-                        .filter(l => l.className === className && l.subject === subject)
-                        .filter(l => filterBySearch(l))
-                        .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                    let cellContent = '';
-                    if (filteredLogs.length > 0) {
-                        cellContent += `<div class="space-y-2 mb-2">`;
-                        filteredLogs.forEach((log, index) => {
-                            const isLatest = index === 0;
-                            cellContent += `
-                                <div onclick="openEditLogModal('${log.id}')" class="p-2.5 rounded-lg border text-xs cursor-pointer transition ${isLatest ? 'bg-white border-brand-200 shadow-sm' : 'bg-slate-50 border-slate-200 opacity-80'}">
-                                    <div class="flex items-center justify-between text-[11px] mb-1">
-                                        <span class="font-bold ${isLatest ? 'text-brand-600' : 'text-slate-500'}">📅 ${log.date.substring(5)}</span>
-                                        ${isLatest ? '<span class="px-1 text-[10px] bg-brand-100 text-brand-700 rounded font-semibold">최신</span>' : ''}
-                                    </div>
-                                    <div class="font-medium text-slate-900 whitespace-pre-line">${escapeHtml(log.progress)}</div>
-                                    ${log.homework ? `<div class="mt-1 text-[11px] text-slate-500 bg-slate-100 p-1 rounded">📌 ${escapeHtml(log.homework)}</div>` : ''}
-                                </div>
-                            `;
+                appSubjects.forEach(function(sub) {
+                    var logs = appLogs.filter(function(l) { return l.className === cls && l.subject === sub; });
+                    var cellHtml = '<td class="p-3 border-r border-b text-xs align-top">';
+                    if (logs.length > 0) {
+                        logs.forEach(function(log) {
+                            cellHtml += '<div onclick="openEditLogModal(\'' + log.id + '\')" class="p-2 border rounded mb-1 bg-white cursor-pointer">' +
+                                '<div class="font-bold text-blue-600">📅 ' + log.date + '</div>' +
+                                '<div>' + log.progress + '</div>' +
+                                '</div>';
                         });
-                        cellContent += `</div>`;
                     } else {
-                        cellContent += `<div class="h-full min-h-[60px] flex items-center justify-center text-slate-300 text-xs italic">기록 없음</div>`;
+                        cellHtml += '<div class="text-slate-300 italic">기록 없음</div>';
                     }
-
-                    cellContent += `
-                        <div class="mt-2 flex justify-end">
-                            <button onclick="openLogModalFor('${escapeHtml(className)}', '${escapeHtml(subject)}')" class="text-xs bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-600 px-2 py-1 rounded border cursor-pointer">
-                                <i class="fa-solid fa-plus mr-1"></i> 기입
-                            </button>
-                        </div>
-                    `;
-                    tdSubject.innerHTML = cellContent;
-                    tr.appendChild(tdSubject);
+                    cellHtml += '<button onclick="openLogModalFor(\'' + cls + '\', \'' + sub + '\')" class="mt-1 text-[11px] bg-slate-100 px-2 py-0.5 rounded border">+ 작성</button></td>';
+                    tr.innerHTML += cellHtml;
                 });
                 tbody.appendChild(tr);
             });
         }
 
         function renderHistoryView() {
-            const container = document.getElementById('history-container');
+            var container = document.getElementById('history-container');
             if (!container) return;
-            populateHistoryFilters();
-
-            const classFilter = document.getElementById('filter-class').value;
-            const subjectFilter = document.getElementById('filter-subject').value;
-
-            const filteredLogs = appLogs
-                .filter(l => !classFilter || l.className === classFilter)
-                .filter(l => !subjectFilter || l.subject === subjectFilter)
-                .filter(l => filterBySearch(l))
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            if (filteredLogs.length === 0) {
-                container.innerHTML = `<div class="p-12 text-center text-slate-400 text-sm">기록이 없습니다.</div>`;
-                return;
-            }
-
-            container.innerHTML = filteredLogs.map(log => `
-                <div class="p-4 hover:bg-slate-50 flex justify-between items-center gap-3">
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100">${escapeHtml(log.className)}</span>
-                            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-brand-50 text-brand-700">${escapeHtml(log.subject)}</span>
-                            <span class="text-xs text-slate-400">${log.date}</span>
-                        </div>
-                        <div class="text-sm font-semibold text-slate-900 pt-1">${escapeHtml(log.progress)}</div>
-                    </div>
-                    <button onclick="openEditLogModal('${log.id}')" class="text-xs bg-white border px-3 py-1.5 rounded-lg shadow-xs cursor-pointer hover:border-brand-300">수정</button>
-                </div>
-            `).join('');
-        }
-
-        function populateHistoryFilters() {
-            const cF = document.getElementById('filter-class');
-            const sF = document.getElementById('filter-subject');
-            if (!cF || !sF) return;
-            cF.innerHTML = '<option value="">전체 반 보기</option>' + appClasses.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
-            sF.innerHTML = '<option value="">전체 과목 보기</option>' + appSubjects.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
-        }
-
-        function handleSearch() {
-            searchQuery = document.getElementById('search-input').value.trim().toLowerCase();
-            currentView === 'matrix' ? renderMatrixView() : renderHistoryView();
-        }
-
-        function filterBySearch(log) {
-            if (!searchQuery) return true;
-            return log.className.toLowerCase().includes(searchQuery) ||
-                   log.subject.toLowerCase().includes(searchQuery) ||
-                   log.progress.toLowerCase().includes(searchQuery) ||
-                   (log.homework && log.homework.toLowerCase().includes(searchQuery));
+            container.innerHTML = '';
+            appLogs.forEach(function(log) {
+                container.innerHTML += '<div class="p-3 flex justify-between items-center text-sm">' +
+                    '<div><span class="font-bold">[' + log.className + ' - ' + log.subject + ']</span> ' + log.progress + '</div>' +
+                    '<button onclick="openEditLogModal(\'' + log.id + '\')" class="text-xs border px-2 py-1 rounded">수정</button>' +
+                    '</div>';
+            });
         }
 
         function populateModalSelects() {
-            const opts = appClasses.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
-            const subOpts = appSubjects.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
-            ['log-class', 'ai-parent-class', 'ai-clinic-class'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerHTML = opts; });
-            ['log-subject', 'ai-clinic-subject'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerHTML = subOpts; });
+            var cOpts = appClasses.map(function(c) { return '<option value="' + c + '">' + c + '</option>'; }).join('');
+            var sOpts = appSubjects.map(function(s) { return '<option value="' + s + '">' + s + '</option>'; }).join('');
+            document.getElementById('log-class').innerHTML = cOpts;
+            document.getElementById('log-subject').innerHTML = sOpts;
+            document.getElementById('ai-parent-class').innerHTML = cOpts;
         }
 
         function openLogModal() {
@@ -569,20 +261,93 @@
             document.getElementById('log-progress').value = '';
             document.getElementById('log-homework').value = '';
             document.getElementById('btn-delete-log').classList.add('hidden');
-            document.getElementById('log-date').value = new Date().toISOString().split('T')[0];
             populateModalSelects();
             document.getElementById('modal-log').classList.remove('hidden');
         }
         function closeLogModal() { document.getElementById('modal-log').classList.add('hidden'); }
         function openLogModalFor(c, s) { openLogModal(); document.getElementById('log-class').value = c; document.getElementById('log-subject').value = s; }
-        function openLogModalForClassByIndex(i) { if(appClasses[i]) { openLogModal(); document.getElementById('log-class').value = appClasses[i]; } }
+        function openLogModalForClass(idx) { openLogModal(); document.getElementById('log-class').value = appClasses[idx]; }
 
         function openEditLogModal(id) {
-            const log = appLogs.find(l => l.id === id);
+            var log = appLogs.find(function(l) { return l.id === id; });
             if (!log) return;
             openLogModal();
             document.getElementById('log-id').value = log.id;
             document.getElementById('log-date').value = log.date;
             document.getElementById('log-class').value = log.className;
             document.getElementById('log-subject').value = log.subject;
-            document.getElementById('log-progress').value = log.progress
+            document.getElementById('log-progress').value = log.progress;
+            document.getElementById('log-homework').value = log.homework || '';
+            document.getElementById('btn-delete-log').classList.remove('hidden');
+        }
+
+        function handleSaveLog(e) {
+            e.preventDefault();
+            var id = document.getElementById('log-id').value;
+            var newLog = {
+                id: id || 'log_' + Date.now(),
+                date: document.getElementById('log-date').value,
+                className: document.getElementById('log-class').value,
+                subject: document.getElementById('log-subject').value,
+                progress: document.getElementById('log-progress').value,
+                homework: document.getElementById('log-homework').value
+            };
+            if (id) {
+                var idx = appLogs.findIndex(function(l) { return l.id === id; });
+                if (idx !== -1) appLogs[idx] = newLog;
+            } else {
+                appLogs.unshift(newLog);
+            }
+            saveData();
+            closeLogModal();
+            renderMatrixView();
+        }
+
+        function deleteCurrentLog() {
+            var id = document.getElementById('log-id').value;
+            appLogs = appLogs.filter(function(l) { return l.id !== id; });
+            saveData();
+            closeLogModal();
+            renderMatrixView();
+        }
+
+        function openAiModal() { populateModalSelects(); document.getElementById('modal-ai').classList.remove('hidden'); }
+        function closeAiModal() { document.getElementById('modal-ai').classList.add('hidden'); }
+        function generateParentMessage() {
+            var cls = document.getElementById('ai-parent-class').value;
+            var logs = appLogs.filter(function(l) { return l.className === cls; });
+            var txt = logs.map(function(l) { return '• [' + l.subject + '] ' + l.progress; }).join('\n');
+            document.getElementById('ai-parent-result').value = '[수업 진도 안내]\n안녕하세요! ' + cls + ' 진도 내역입니다.\n\n' + txt + '\n\n감사합니다.';
+        }
+
+        function openClassModal() { renderClassList(); document.getElementById('modal-class').classList.remove('hidden'); }
+        function closeClassModal() { document.getElementById('modal-class').classList.add('hidden'); }
+        function renderClassList() {
+            document.getElementById('class-list').innerHTML = appClasses.map(function(c, i) { return '<li class="flex justify-between"><span>' + c + '</span><button onclick="removeClass(' + i + ')" class="text-red-500">삭제</button></li>'; }).join('');
+            document.getElementById('subject-list').innerHTML = appSubjects.map(function(s, i) { return '<li class="flex justify-between"><span>' + s + '</span><button onclick="removeSubject(' + i + ')" class="text-red-500">삭제</button></li>'; }).join('');
+        }
+        function addClass() { var v = document.getElementById('new-class-input').value; if(v){ appClasses.push(v); saveData(); renderClassList(); renderMatrixView(); } }
+        function removeClass(i) { appClasses.splice(i,1); saveData(); renderClassList(); renderMatrixView(); }
+        function addSubject() { var v = document.getElementById('new-subject-input').value; if(v){ appSubjects.push(v); saveData(); renderClassList(); renderMatrixView(); } }
+        function removeSubject(i) { appSubjects.splice(i,1); saveData(); renderClassList(); renderMatrixView(); }
+
+        function exportData() {
+            var str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ classes: appClasses, subjects: appSubjects, logs: appLogs }));
+            var a = document.createElement('a'); a.href = str; a.download = 'backup.json'; a.click();
+        }
+        function importData(e) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                var d = JSON.parse(evt.target.result);
+                if(d.classes) appClasses = d.classes;
+                if(d.subjects) appSubjects = d.subjects;
+                if(d.logs) appLogs = d.logs;
+                saveData(); renderMatrixView();
+            };
+            reader.readAsText(e.target.files[0]);
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
